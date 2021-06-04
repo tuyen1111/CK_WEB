@@ -26,13 +26,28 @@
                 return true;
 
             }
+            $("#name").blur(KTHoTen);
 
             function KTNgayden() {
+                var ngayden = $("#ngayden").val().trim();
+                if (ngayden == "") {
+                    $("#tbngayden").html("*Required");
+                    return false;
+                }
+                var date = new Date(ngayden);
+                var today = new Date();
+                today.setDate(today.getDate());
+                if (date < today) {
+                    $("#tbngayden").html("Ngày den phai lon hon ngay hien tai");
+                    return false;
+                }
+                $("#tbngayden").html("*");
+                return true;
 
             }
-            $("#name").blur(KTHoTen);
+            $("#ngayden").blur(KTNgayden);
             $("#save").click(function() {
-                if (!KTHoTen())
+                if (!KTHoTen() || !KTNgayden())
                     return false;
                 var name = $("#name").val().trim();
                 var ngayden = $("#ngayden").val().trim();
