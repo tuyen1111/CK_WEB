@@ -13,7 +13,7 @@
         $(document).ready(function() {
             function KTHoTen() {
                 var name = $("#name").val().trim();
-                regname = /^[A-Z][a-z][A-Z]{1,}$/;
+                regname = /^([A-Z])([a-z]*)$/;
                 if (name == "") {
                     $("#tbname").html("* Required");
                     return false;
@@ -24,6 +24,10 @@
                 }
                 $("#tbname").html("*");
                 return true;
+
+            }
+
+            function KTNgayden() {
 
             }
             $("#name").blur(KTHoTen);
