@@ -46,8 +46,27 @@
 
             }
             $("#ngayden").blur(KTNgayden);
+
+            function KTNgaydi() {
+                var ngayden = $("#ngayden").val().trim();
+                var ngaydi = $("#ngaydi").val().trim();
+                if (ngaydi == "") {
+                    $("#tbngaydi").html("*Required");
+                    return false;
+                }
+                var date1 = new Date(ngayden);
+                var date2 = new Date(ngaydi);
+                if (date2 <= date1) {
+                    $("#tbngaydi").html("Ngày di phai lon hon ngay den");
+                    return false;
+                }
+                $("#tbngaydi").html("*");
+                return true;
+            }
+            $("#ngaydi").blur(KTNgaydi);
+
             $("#save").click(function() {
-                if (!KTHoTen() || !KTNgayden())
+                if (!KTHoTen() || !KTNgayden() || !KTNgaydi())
                     return false;
                 var name = $("#name").val().trim();
                 var ngayden = $("#ngayden").val().trim();
