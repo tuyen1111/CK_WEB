@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function KTHoTen() {
+                var name = $("#name").val().trim();
+                regname = /^[A-Z][a-z][A-Z]{1,}$/;
+                if (name == "") {
+                    $("#tbname").html("* Required");
+                    return false;
+                }
+                if (!regname.test(name)) {
+                    $("#tbname").html("Họ tên phải bắt đầu bằng ký tự in hoa");
+                    return false;
+                }
+                $("#tbname").html("*");
+                return true;
+
+            }
+            $("#name").blur(KTHoTen);
+            $("#save").click(function() {
+                if (!KTHoTen())
+                    return false;
+                var name = $("#name").val().trim();
+                var ngayden = $("#ngayden").val().trim();
+                var ngaydi = $("#ngaydi").val().trim();
+                var songay = $("#songay").val().trim();
+                var loaiphong = $("#loaiphong option:selected").text();
+                var gia = $("#gia").val().trim();
+                var dv = [];
+                $.each($("input[name='dv']:checked"), function() {
+                    dv.push($(this).val());
+                });
+                var row = "<tr><td>" + name + "</td><td>" + ngaydi + "</td><td>" + ngayden + "</td><td>" + songay + "</td><td>" + loaiphong + "</td><td>" + dv + "</td><td>" + gia + "</td></tr>";
+                $("table tbody").append(row);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Padanus Resort</h1>
+        </div>
+        <div class="row">
+            <h1>Dat Phong Online</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <form>
+                    <div class="form-group">
+                        <label for="Hoten">Ho Ten Nguoi Dat<span class="text-danger" id="tbname">*</span></label>
+                        <input type="text" id="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Ngayden">Ngay den<span class="text-danger" id="tbngayden">*</span></label>
+                        <input type="date" id="ngayden" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Ngaydi">Ngay di<span class="text-danger" id="tbngaydi">*</span></label>
+                        <input type="date" id="ngaydi" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="SoNgay">So Ngay<span class="text-danger" id="tbsongay">*</span></label>
+                        <input type="text" id="songay" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="LoaiPhong">LoaiPhong<span class="text-danger" id="tbloaiphong">*</span></label>
+                        <select id="loaiphong">
+                          <option>Luxury</option>
+                          <option>Superior</option>
+                          <option>View Sea</option>
+                          <option>Pool view</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gia">Gia phong<span class="text-danger" id="tbgia">*</span></label>
+                        <input type="text" id="gia" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Dichvu">Dich vu<span class="text-danger" id="tbdv">*</span></label><br/>
+                        <input type="checkbox" id="dv" name="dv" value="Giat ui">
+                        <label>Giat ui</label>
+                        <input type="checkbox" id="dv" name="dv" value="Xe dau ruoc">
+                        <label>Xe dua ruoc</label>
+                        <input type="checkbox" id="dv" name="dv" value="An sang tai phong">
+                        <label>An sang tai phong</label>
+                    </div>
+                    <button id="save" class="btn btn-success " type="button">Đăng kí</button>
+                </form>
+
+            </div>
+            <div class="col-md-3">
+                <img src="../image/PIC.JPG" alt="" width="300px">
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Ho Ten Nguoi Dat</td>
+                        <td>Ngay di</td>
+                        <td>Ngay den</td>
+                        <td>So ngay</td>
+                        <td>Loai phong</td>
+                        <td>Dich vu</td>
+                        <td>Tong chi phi</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+
+    </div>
+</body>
+
+</html>
